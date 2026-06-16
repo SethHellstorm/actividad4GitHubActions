@@ -1,0 +1,41 @@
+name: Setup Branch Protection
+
+# Corre una sola vez cuando se hace push a main
+# También se puede disparar manualmente desde la pestaña Actions
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/branch-protection.yml'
+
+jobs:
+  protect-main:
+    name: Protect main branch via API
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply branch protection rules
+        uses: actions/github-script@v7
+        with:
+          # Necesitas un PAT con permisos repo:admin
+          github-token: ${{ secrets.ADMIN_TOKEN }}
+          script: |
+            await github.rest.repos.updateBranchProtection({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              branch: 'main',
+              required_status_checks: {
+                strict: true,           // El branch debe estar actualizado con main
+                contexts: [
+                  'Unit Tests (Vitest)',
+                  'E2E Tests (Playwright)',
+                ]
+              },
+              enforce_admins: true,     // Aplica reglas incluso a admins
+              required_pull_request_reviews: {
+                required_approving_review_count: 1,
+                dismiss_stale_reviews: true,
+              },
+              restrictions: null,       // Sin restricciones de quién puede hacer push
+            });
+            console.log('✅ Branch protection aplicada en main');
