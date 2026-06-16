@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Página Web</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f8fafc; color: #1e293b; }
+    header { background: #1e40af; color: white; padding: 1.5rem 2rem; }
+    header h1 { font-size: 1.5rem; }
+    nav a { color: #bfdbfe; margin-left: 1.5rem; text-decoration: none; font-size: .9rem; }
+    nav a:hover { color: white; }
+    main { max-width: 800px; margin: 3rem auto; padding: 0 1rem; }
+    h2 { margin-bottom: 1rem; color: #1e40af; }
+    form { display: flex; flex-direction: column; gap: .75rem; max-width: 400px; }
+    input { padding: .6rem 1rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
+    button[type="submit"] {
+      background: #1e40af; color: white; border: none;
+      padding: .7rem 1.5rem; border-radius: 6px; cursor: pointer; font-size: 1rem;
+    }
+    button[type="submit"]:hover { background: #1e3a8a; }
+    #mensaje { margin-top: 1rem; padding: .75rem 1rem; border-radius: 6px; display: none; }
+    #mensaje.exito { background: #dcfce7; color: #166534; display: block; }
+    #mensaje.error  { background: #fee2e2; color: #991b1b; display: block; }
+    footer { text-align: center; padding: 2rem; color: #64748b; font-size: .85rem; margin-top: 4rem; }
+  </style>
+  <script type="module" crossorigin src="/assets/index-A_6x5EHJ.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Mi Página Web</h1>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 id="contacto">Contacto</h2>
+    <form id="contactForm" novalidate>
+      <input type="text"  id="nombre" placeholder="Nombre"  required aria-label="Nombre" />
+      <input type="email" id="email"  placeholder="Email"   required aria-label="Email" />
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="mensaje" role="alert"></p>
+  </main>
+
+  <footer>© 2025 Mi Página Web</footer>
+
+</body>
+</html>
+<!-- Demostracion de cambios-->
